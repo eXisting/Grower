@@ -67,9 +67,6 @@
 -r:Q:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll
 -r:Q:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
 -r:Q:/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll
--r:Q:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll
--r:Q:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll
--r:Q:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll
 -r:Q:/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll
 -r:Q:/Unity/Editor/Data/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll
 -r:Q:/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll
@@ -93,6 +90,8 @@
 -r:C:/Users/Plagiatix/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.1/Editor/UnityEditor.Purchasing.dll
 -r:C:/Users/Plagiatix/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
+-r:Q:/Unity/Projects/Grower/Assets/Plugins/DOTween/Editor/DOTweenEditor.dll
+-r:Q:/Unity/Projects/Grower/Assets/Plugins/DOTween/DOTween.dll
 -r:Q:\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll
 -r:Q:\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll
 -r:Q:\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll

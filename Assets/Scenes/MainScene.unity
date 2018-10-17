@@ -236,8 +236,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMoveSpeed: 5
+  maxHorizontalOffset: 100
+  maxVerticalOffset: 50
   level: 1
-  countMultiplier: 1
+  countMultiplier: 5
   mainCanvas: {fileID: 46244761}
   mainSphere: {fileID: 1995268547}
   ball: {fileID: 1567738649479698, guid: 702162824994e3b489aeb775654a1ba6, type: 2}
