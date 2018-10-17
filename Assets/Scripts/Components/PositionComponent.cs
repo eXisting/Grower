@@ -10,7 +10,7 @@ namespace Spheres.Core
 	[Serializable]
 	public struct Position : IComponentData
 	{
-		public float Value;
+		public Vector3 Value;
 	}
 
 	public class PositionComponent : ComponentDataWrapper<Position> { }

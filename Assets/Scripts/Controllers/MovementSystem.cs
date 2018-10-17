@@ -9,7 +9,7 @@ using Unity.Collections;
 namespace GameSystems
 {
 
-	public class MainSphereSystem : JobComponentSystem
+	public class MovementSystem : JobComponentSystem
 	{
 		[ComputeJobOptimization]
 		struct MovementJob : IJobProcessComponentData<Position, MoveSpeed>
