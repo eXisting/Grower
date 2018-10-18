@@ -1,10 +1,8 @@
-﻿using System;
-using UnityEngine;
-using Unity.Entities;
+﻿using UnityEngine;
 using UnityEngine.Jobs;
 using GameSystems;
 using Unity.Jobs;
-using Spheres.Core;
+using DG.Tweening;
 
 public class GameController : MonoBehaviour
 {
@@ -62,7 +60,7 @@ public class GameController : MonoBehaviour
 	MovementSystem movementSystem;
 
 	JobHandle jobHandle;
-	
+
 	private void Awake()
 	{
 		Initialize();
@@ -72,7 +70,7 @@ public class GameController : MonoBehaviour
 	{	
 		AddBalls();
 	}
-
+	
 	private void OnDisable()
 	{
 		balls.Dispose();
@@ -87,9 +85,7 @@ public class GameController : MonoBehaviour
 		{
 			GameObject obj = GameObject.Instantiate(ball,  mainCanvas.transform);
 			obj.transform.localPosition = CalculateBallPosition();
-
-			//Debug.Log("Local position: " + obj.transform.localPosition);
-
+			
 			balls.Add(obj.transform);
 		}
 	}
