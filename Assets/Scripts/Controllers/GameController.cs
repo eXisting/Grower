@@ -10,11 +10,11 @@ public class GameController : MonoBehaviour
 {
 	struct ViewBounds
 	{
-		public float LeftClosestHorizontal;
-		public float RightClosestHorizontal;
+		public float xLeftBound;
+		public float xRightBound;
 
-		public float TopClosesVertical;
-		public float BottomClosesVertical;
+		public float yTopBound;
+		public float yBotBound;
 	}
 
 	#region Game stuff
@@ -98,28 +98,21 @@ public class GameController : MonoBehaviour
 	private Vector3 CalculateBallPosition()
 	{
 		float xMinRange = UnityEngine.Random.Range(
-			viewBounds.LeftClosestHorizontal, 
-			viewBounds.LeftClosestHorizontal - maxHorizontalOffset
+			viewBounds.xLeftBound, 
+			viewBounds.xLeftBound - maxHorizontalOffset
 		);
 
 		float xMaxRange = UnityEngine.Random.Range(
-			viewBounds.RightClosestHorizontal, 
-			viewBounds.RightClosestHorizontal + maxHorizontalOffset
+			viewBounds.xRightBound, 
+			viewBounds.xRightBound + maxHorizontalOffset
 		);
 
-		float yMinRange = UnityEngine.Random.Range(
-			viewBounds.BottomClosesVertical, 
-			viewBounds.BottomClosesVertical - maxVerticalOffset
-		);
-
-		float yMaxRange = UnityEngine.Random.Range(
-			viewBounds.TopClosesVertical, 
-			viewBounds.TopClosesVertical + maxVerticalOffset
-		);
+		float yMinRange = viewBounds.yBotBound - maxVerticalOffset;
+		float yMaxRange = viewBounds.yTopBound + maxVerticalOffset;
 		
 		Vector3 position = new Vector3(
 			rand.Next(0, 2) < 1 ? xMinRange : xMaxRange, 
-			rand.Next(0, 2) < 1 ? xMinRange : xMaxRange
+			rand.Next(0, 2) < 1 ? yMinRange : yMaxRange
 		);
 
 		return position;
@@ -137,10 +130,10 @@ public class GameController : MonoBehaviour
 
 	private void RememberViewBounds()
 	{
-		viewBounds.LeftClosestHorizontal = mainCanvasRect.xMin - ballSize;
-		viewBounds.RightClosestHorizontal = mainCanvasRect.xMax + ballSize;
+		viewBounds.xLeftBound = mainCanvasRect.xMin - ballSize;
+		viewBounds.xRightBound = mainCanvasRect.xMax + ballSize;
 
-		viewBounds.BottomClosesVertical = mainCanvasRect.yMin - ballSize;
-		viewBounds.TopClosesVertical = mainCanvasRect.yMax + ballSize;
+		viewBounds.yBotBound = mainCanvasRect.yMin - ballSize;
+		viewBounds.yTopBound = mainCanvasRect.yMax + ballSize;
 	}
 }
