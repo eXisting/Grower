@@ -62,8 +62,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Components\MoveSpeedComponent.cs" />
     <Compile Include="Assets\Scripts\Components\PositionComponent.cs" />
-    <Compile Include="Assets\Scripts\Controllers\GameController.cs" />
-    <Compile Include="Assets\Scripts\Controllers\MovementSystem.cs" />
+    <Compile Include="Assets\Scripts\Components\SizeComponent.cs" />
+    <Compile Include="Assets\Scripts\Controllers\DataDisplayManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\Systems\MovementSystem.cs" />
     <Reference Include="Unity.Transforms">
       <HintPath>Q:/Unity/Projects/Grower/Library/ScriptAssemblies/Unity.Transforms.dll</HintPath>
     </Reference>

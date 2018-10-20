@@ -8,11 +8,11 @@ namespace Spheres.Core
 {
 
 	[Serializable]
-	public struct Spawn : IComponentData
+	public struct Size : IComponentData
 	{
 		public float Value;
 	}
 
-	public class SpawnComponent : ComponentDataWrapper<Spawn> { }
+	public class SizeComponent : ComponentDataWrapper<Size> { }
 
 }

@@ -307,6 +307,9 @@
 -d:UNITY_HAS_TANGO
 -i:Q:/Unity/Projects/Grower/Assets/Scripts/Components/MoveSpeedComponent.cs
 -i:Q:/Unity/Projects/Grower/Assets/Scripts/Components/PositionComponent.cs
--i:Q:/Unity/Projects/Grower/Assets/Scripts/Controllers/GameController.cs
--i:Q:/Unity/Projects/Grower/Assets/Scripts/Controllers/MovementSystem.cs
+-i:Q:/Unity/Projects/Grower/Assets/Scripts/Components/SizeComponent.cs
+-i:Q:/Unity/Projects/Grower/Assets/Scripts/Controllers/DataDisplayManager.cs
+-i:Q:/Unity/Projects/Grower/Assets/Scripts/Controllers/GameManager.cs
+-i:Q:/Unity/Projects/Grower/Assets/Scripts/Controllers/SpawnManager.cs
+-i:Q:/Unity/Projects/Grower/Assets/Scripts/Systems/MovementSystem.cs
 -v:0
