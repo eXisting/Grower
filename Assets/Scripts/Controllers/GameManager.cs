@@ -45,9 +45,9 @@ namespace GameManagers
 			}
 		}
 
-		public int Multiplier { get; }
+		public int Multiplier { get; private set; }
 
-		public int Level { get; }
+		public int Level { get; private set; }
 
 		#endregion
 
@@ -59,10 +59,18 @@ namespace GameManagers
 		{
 			Initialize();
 		}
-		
+
+		private void Update()
+		{
+			if (Input.GetKeyDown("space"))
+				StartGame();
+		}
+
 		private void Initialize()
 		{
 			Screen.orientation = ScreenOrientation.Landscape;
+			Level = 1;
+			Multiplier = 5;
 
 			Instance = this;
 

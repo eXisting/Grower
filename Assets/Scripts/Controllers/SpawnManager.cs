@@ -3,6 +3,8 @@ using Spheres.Core;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
+using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.Jobs;
 
@@ -53,13 +55,7 @@ namespace GameManagers
 		private ViewBounds viewBounds;
 
 		private EntityManager manager;
-
-		private TransformAccessArray balls;
-
-		private MovementSystem movementSystem;
-
-		private JobHandle jobHandle;
-
+		
 		private System.Random rand;
 
 		#region Core functions
@@ -73,13 +69,7 @@ namespace GameManagers
 		{
 			AddBalls();
 		}
-
-		private void OnDisable()
-		{
-			balls.Dispose();
-			jobHandle.Complete();
-		}
-
+		
 		private void AddBalls()
 		{
 			int amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
@@ -91,20 +81,26 @@ namespace GameManagers
 			{
 				manager.SetComponentData(
 					entities[i], 
-					new Position { Value = CalculateBallPosition() }
+					new LocalPosition { Value = CalculateBallPosition() }
+				);
+
+				manager.SetComponentData(
+					entities[i],
+					new Rotation { Value = new quaternion(0,0,0,0) }
 				);
 
 				// TODO: come up with formulas:
 
 				manager.SetComponentData(
 					entities[i], 
-					new MoveSpeed { Value = initialMoveSpeed * GameManager.Instance.Level }
+					new MoveSpeed { speed = initialMoveSpeed * GameManager.Instance.Level }
 				);
 
-				manager.SetComponentData(
-					entities[i], 
-					new Size { Value = initialBallSize * GameManager.Instance.Level }
-				);
+				//manager.SetComponentData(
+				//	entities[i], 
+				//	new Size { Value = initialBallSize * GameManager.Instance.Level }
+				//);
+
 			}
 
 			entities.Dispose();
@@ -115,7 +111,7 @@ namespace GameManagers
 		{
 			float yMinRange = UnityEngine.Random.Range(
 				viewBounds.yBotBound,
-				viewBounds.yTopBound - maxVerticalOffset
+				viewBounds.yBotBound - maxVerticalOffset
 			);
 
 			float yMaxRange = UnityEngine.Random.Range(
@@ -123,7 +119,7 @@ namespace GameManagers
 				viewBounds.xRightBound + maxVerticalOffset
 			);
 
-			float xMinRange = viewBounds.xRightBound - maxHorizontalOffset;
+			float xMinRange = viewBounds.xLeftBound - maxHorizontalOffset;
 			float xMaxRange = viewBounds.xRightBound + maxHorizontalOffset;
 
 			Vector3 position = new Vector3(
@@ -149,7 +145,7 @@ namespace GameManagers
 			
 			rand = new System.Random();
 
-			balls = new TransformAccessArray(GameManager.Instance.Level * GameManager.Instance.Multiplier);
+			//balls = new TransformAccessArray(GameManager.Instance.Level * GameManager.Instance.Multiplier);
 			mainCanvasRect = mainCanvas.GetComponent<RectTransform>().rect;
 
 			RememberViewBounds();

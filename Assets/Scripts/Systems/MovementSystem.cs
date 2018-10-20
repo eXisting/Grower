@@ -7,23 +7,30 @@ using Unity.Jobs;
 using Unity.Collections;
 using Unity.Mathematics;
 using DG.Tweening;
+using Unity.Transforms;
 
 namespace GameSystems
 {
 	public class MovementSystem : JobComponentSystem
 	{		
 		[ComputeJobOptimization]
-		struct MovementJob : IJobProcessComponentData<Position, MoveSpeed, Size>
+		struct MovementJob : IJobProcessComponentData<LocalPosition, MoveSpeed, Rotation>
 		{
 			public float deltaTime;
 			public float maxSpeed;
 			public Vector3 targetPosition;
 
-			public void Execute(ref Position _position, [ReadOnly] ref MoveSpeed _movespeed, [ReadOnly] ref Size _size)
+			public void Execute(
+				ref LocalPosition _position, 
+				[ReadOnly] ref MoveSpeed _movespeed, 
+				[ReadOnly] ref Rotation _rotation
+			)
 			{
+				//Debug.Log(_position.Value);
+
 				float3 pos = _position.Value;
-				
-				pos += deltaTime * _movespeed.Value;
+
+				pos.x += deltaTime * 1;
 
 				_position.Value = pos;
 			}
@@ -34,7 +41,7 @@ namespace GameSystems
 			MovementJob movementJob = new MovementJob
 			{
 				deltaTime = Time.deltaTime,
-				maxSpeed = 20f,
+				maxSpeed = GameManagers.GameManager.Instance.Level * 5,
 				targetPosition = Vector3.zero
 			};
 
