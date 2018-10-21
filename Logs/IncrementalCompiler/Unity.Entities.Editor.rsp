@@ -87,6 +87,8 @@
 -r:Q:/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll
 -r:Q:/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 -r:Q:/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll
+-r:Q:/Unity/Projects/Grower/Assets/Plugins/DOTween/DOTween.dll
+-r:Q:/Unity/Projects/Grower/Assets/Plugins/DOTween/Editor/DOTweenEditor.dll
 -r:C:/Users/Plagiatix/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
 -r:C:/Users/Plagiatix/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll
 -r:C:/Users/Plagiatix/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll
