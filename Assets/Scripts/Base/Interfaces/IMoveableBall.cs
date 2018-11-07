@@ -11,7 +11,6 @@ namespace Base.Interfaces
 	{
 		void Move(Vector3 _target);
 
-		event Action OnMoveBegan;
-		event Action OnMoveEnded;
+		event Action OnMovementStart;
 	}
 }

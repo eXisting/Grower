@@ -313,7 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 1611903702}
   dataDisplayManager: {fileID: 1044891155}
-  ballsObserver: {fileID: 0}
+  ballsObserver: {fileID: 839144874}
   mainCanvas: {fileID: 46244761}
   mainSphere: {fileID: 1995268547}
 --- !u!4 &116745790
@@ -1306,7 +1306,9 @@ GameObject:
   - component: {fileID: 1995268551}
   - component: {fileID: 1995268550}
   - component: {fileID: 1995268549}
+  - component: {fileID: 1995268553}
   - component: {fileID: 1995268552}
+  - component: {fileID: 1995268554}
   m_Layer: 0
   m_Name: Center Sphere
   m_TagString: Untagged
@@ -1339,10 +1341,10 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1995268547}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1995268550
 MeshRenderer:
@@ -1416,6 +1418,32 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!54 &1995268553
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1995268547}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &1995268554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1995268547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48f4038c012ec544a9ef026b4bde7cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2054587743
 GameObject:
   m_ObjectHideFlags: 0

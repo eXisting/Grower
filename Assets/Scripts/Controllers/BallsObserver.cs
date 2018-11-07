@@ -16,29 +16,14 @@ namespace GameManagers
 	{
 		private Dictionary<int, IMoveableBall> balls = new Dictionary<int, IMoveableBall>();
 
+		private Vector3 TargetPosition;
+
 		private void Start()
 		{
 			GameManager.Instance.SpawnManager.OnBallsAddFinished += StartMoveBalls;
+			TargetPosition = GameManager.Instance.MainSphere.transform.localPosition;
 		}
 
-		private void StartMoveBalls(int _amount)
-		{
-			if (balls.Count == _amount)
-				StartCoroutine(MovementCourutine(_amount));
-			else
-				Debug.LogErrorFormat("Cannot start game! There is not enough balls. Need: {0}, Present: {1}", _amount, balls.Count);
-		}
-
-		private IEnumerator MovementCourutine(int _amount)
-		{
-			for (int ID = 0; ID < _amount; ID++)
-			{
-				yield return new WaitForSeconds(GameManager.Instance.Level / 10);
-
-				Move(ID);
-			}
-		}
-		
 		public void Add(int _id, IMoveableBall _ball)
 		{
 			balls[_id] = _ball;
@@ -49,10 +34,24 @@ namespace GameManagers
 			balls.Remove(_id);
 		}
 
-		private void Move(int _id)
+		private void StartMoveBalls(int _amount)
 		{
-			balls[_id].Move(GameManager.Instance.MainSphere.transform.localPosition);
+			if (balls.Count == _amount)
+				StartCoroutine(QueueableMove(_amount));
+			else
+				Debug.LogErrorFormat("Cannot start game! There is balls missmatch. Need: {0}, Present: {1}", _amount, balls.Count);
 		}
+
+		private IEnumerator QueueableMove(int _amount)
+		{
+			for (int ID = 0; ID < _amount; ID++)
+			{
+				yield return new WaitForSeconds(GameManager.Instance.Level * 2);
+				RegularBall ball = (RegularBall)balls[ID];
+
+				ball.Move(TargetPosition);
+			}
+		}		
 	}
 
 }

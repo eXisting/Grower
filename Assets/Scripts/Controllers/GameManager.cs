@@ -34,6 +34,7 @@ namespace GameManagers
 
 		public int Multiplier { get; private set; }
 		public int Level { get; private set; }
+		public int InitialHitsCount { get; private set; }
 
 		public GameObject MainCanvas { get => mainCanvas; private set => mainCanvas = value; }
 		public GameObject MainSphere { get => mainSphere; private set => mainSphere = value; }
@@ -62,7 +63,8 @@ namespace GameManagers
 		{
 			Screen.orientation = ScreenOrientation.Landscape;
 			Level = 1;
-			Multiplier = 5;
+			Multiplier = 100;
+			InitialHitsCount = 2;
 			Randomizer = new System.Random();
 
 			Instance = this;

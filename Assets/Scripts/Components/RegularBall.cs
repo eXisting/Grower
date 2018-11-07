@@ -12,46 +12,52 @@ using UnityEngine;
 
 namespace Components
 {
-	public class RegularBall : Ball, IDestroyableBall, IMoveableBall
+	public class RegularBall : Ball, IMoveableBall, IDestroyableBall
 	{
-		public event Action OnMoveBegan;
-		public event Action OnMoveEnded;
+		public event Action OnMovementStart;
 		public event Action OnBallDestroy;
 
+		public int Points;
 		public float MoveSpeed;
 
-		public void Destroy()
+		public void InitBall()
 		{
-			Debug.Log("Item is about to be destroyed");
+			BallColor color = (BallColor)GameManager.Instance.Randomizer.Next((int)BallColor.Purple, (int)BallColor.Orange);
+			// TODO: Make better generation
+			this.Color = ColorGenerator.Get(color);
+
+			// TODO: Add in-game types
+			this.Radius = GameManager.Instance.Randomizer.Next(55, 100);
+			this.MoveSpeed = GameManager.Instance.Level * 100;
+			this.Points = GameManager.Instance.Level * (int)color;
 		}
 
 		public void Move(Vector3 _target)
 		{
 			Debug.Log("Item is about to move");
 
-			StartCoroutine(BallMovement(_target));
+			StartCoroutine(Movement(_target));
 		}
 
-		private IEnumerator BallMovement(Vector3 _target)
+		public void DestroyBall()
 		{
+			Debug.Log("Item is about to be destroyed");
+
+			OnBallDestroy?.Invoke();
+			StopCoroutine("Movement");
+			Destroy(this.gameObject);
+		}
+
+		private IEnumerator Movement(Vector3 _target)
+		{
+			OnMovementStart?.Invoke();
+
 			while (transform.localPosition != _target)
 			{
-				Debug.Log("Item is moving");
-
 				transform.localPosition = Vector3.MoveTowards(transform.localPosition, _target, MoveSpeed * Time.deltaTime);
 
 				yield return new WaitForFixedUpdate();
 			}
-		}
-
-		public void InitBall()
-		{
-			// TODO: Add in-game types
-			this.Radius = GameManager.Instance.Randomizer.Next(55, 100);
-			this.MoveSpeed = GameManager.Instance.Level * 100;
-
-			// TODO: Make better generation
-			this.Color = ColorGenerator.Get((BallColor)GameManager.Instance.Randomizer.Next((int)BallColor.Purple, (int)BallColor.Orange));
 		}
 	}
 }

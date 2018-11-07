@@ -8,7 +8,7 @@ namespace Base.Interfaces
 {
 	public interface IDestroyableBall
 	{
-		void Destroy();
+		void DestroyBall();
 
 		event Action OnBallDestroy;
 	}

@@ -1,5 +1,6 @@
 ﻿using Base.AbstractClasses;
 using Base.Interfaces;
+using GameManagers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,34 @@ namespace Components
 	{
 		public event Action OnBallDestroy;
 
-		public void Destroy()
+		private int HitsToDeath;
+		
+		private void Start()
 		{
-			Debug.Log("Game is over");
+			HitsToDeath = GameManager.Instance.Level * GameManager.Instance.InitialHitsCount;
+		}
+
+		private void OnCollisionEnter(Collision collision)
+		{
+			Debug.Log("Collision: " + collision.collider.name);
+
+			if (HitsToDeath == 1)
+			{
+				OnBallDestroy?.Invoke();
+			}
+
+			RegularBall ball = collision.gameObject.GetComponent<RegularBall>();
+			if (ball != null)
+				ball.DestroyBall();
+			else
+				Destroy(collision.gameObject);
+
+			--HitsToDeath;
+		}
+
+		public void DestroyBall()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

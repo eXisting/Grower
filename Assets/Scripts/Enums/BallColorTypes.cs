@@ -27,7 +27,7 @@ namespace Enums
 				case BallColor.Red:
 					return new Color32(255,0,0,255);
 				case BallColor.Orange:
-					return new Color32(255,140,0,255);
+					return new Color32(255,190,0,255);
 				default:
 					return new Color32();
 			}

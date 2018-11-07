@@ -79,7 +79,7 @@ namespace GameManagers
 
 				GameManager.Instance.BallsObserver.Add(ID, r_Ball);
 
-				yield return new WaitForSeconds(GameManager.Instance.Level * 2);
+				yield return new WaitForFixedUpdate();
 			}
 			
 			OnBallsAddFinished?.Invoke(amount);
