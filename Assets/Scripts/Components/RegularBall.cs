@@ -48,6 +48,11 @@ namespace Components
 			Destroy(this.gameObject);
 		}
 
+		private void OnMouseDown()
+		{
+			DestroyBall();
+		}
+
 		private IEnumerator Movement(Vector3 _target)
 		{
 			OnMovementStart?.Invoke();

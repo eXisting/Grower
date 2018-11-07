@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace GameManagers
 {
@@ -70,9 +71,10 @@ namespace GameManagers
 				GameObject obj = Instantiate(this.ball, GameManager.Instance.MainCanvas.transform);
 				
 				RegularBall r_Ball = obj.AddComponent<RegularBall>();
-
 				r_Ball.InitBall();
 
+				obj.AddComponent<EventTrigger>();
+				
 				obj.GetComponent<Renderer>().material.color = r_Ball.Color;
 				obj.transform.localPosition = ballPosition;
 				obj.transform.localScale = new Vector3(r_Ball.Radius, r_Ball.Radius, r_Ball.Radius);
