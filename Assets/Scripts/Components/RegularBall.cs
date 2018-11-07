@@ -50,6 +50,8 @@ namespace Components
 
 		private void OnMouseDown()
 		{
+            GameManager.Instance.OnBallKill(Points);
+
 			DestroyBall();
 		}
 
