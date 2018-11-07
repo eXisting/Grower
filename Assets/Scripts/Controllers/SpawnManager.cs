@@ -1,12 +1,7 @@
-﻿using GameSystems;
-using Spheres.Core;
-using Unity.Collections;
-using Unity.Entities;
-using Unity.Jobs;
-using Unity.Mathematics;
-using Unity.Transforms;
+﻿using Base.AbstractClasses;
+using Components;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Jobs;
 
 namespace GameManagers
 {
@@ -47,16 +42,17 @@ namespace GameManagers
 		[Header("Bot prefab")]
 		[SerializeField]
 		private GameObject ball;
-
-		private Rect mainCanvasRect;
-
+		
 		#endregion
 
 		private ViewBounds viewBounds;
+		private Rect mainCanvasRect;
 
-		private EntityManager manager;
-		
 		private System.Random rand;
+
+		private List<Ball> balls = new List<Ball>();
+
+		private int amount;
 
 		#region Core functions
 
@@ -72,51 +68,28 @@ namespace GameManagers
 		
 		private void AddBalls()
 		{
-			int amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
-
-			NativeArray<Entity> entities = new NativeArray<Entity>(amount, Allocator.Temp);
-			manager.Instantiate(ball, entities);
+			amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
 
 			for (int i = 0; i < amount; i++)
 			{
-				manager.SetComponentData(
-					entities[i], 
-					new LocalPosition { Value = CalculateBallPosition() }
-				);
+				Vector3 ballPosition = CalculateBallPosition();
 
-				manager.SetComponentData(
-					entities[i],
-					new Rotation { Value = new quaternion(0,0,0,0) }
-				);
-
-				// TODO: come up with formulas:
-
-				manager.SetComponentData(
-					entities[i], 
-					new MoveSpeed { speed = initialMoveSpeed * GameManager.Instance.Level }
-				);
-
-				//manager.SetComponentData(
-				//	entities[i], 
-				//	new Size { Value = initialBallSize * GameManager.Instance.Level }
-				//);
-
+				GameObject obj = Instantiate(this.ball, mainCanvas.transform);
+				obj.transform.localPosition = ballPosition;
 			}
-
-			entities.Dispose();
 		}
 
 
 		private Vector3 CalculateBallPosition()
 		{
 			float yMinRange = UnityEngine.Random.Range(
-				viewBounds.yBotBound,
+				0,
 				viewBounds.yBotBound - maxVerticalOffset
 			);
 
 			float yMaxRange = UnityEngine.Random.Range(
-				viewBounds.xRightBound,
-				viewBounds.xRightBound + maxVerticalOffset
+				0,
+				viewBounds.yTopBound + maxVerticalOffset
 			);
 
 			float xMinRange = viewBounds.xLeftBound - maxHorizontalOffset;
@@ -144,13 +117,17 @@ namespace GameManagers
 			Screen.orientation = ScreenOrientation.Landscape;
 			
 			rand = new System.Random();
-
-			//balls = new TransformAccessArray(GameManager.Instance.Level * GameManager.Instance.Multiplier);
+			
 			mainCanvasRect = mainCanvas.GetComponent<RectTransform>().rect;
 
 			RememberViewBounds();
 
-			manager = World.Active.GetOrCreateManager<EntityManager>();
+			GenerateObjectPool();
+		}
+
+		private void GenerateObjectPool()
+		{
+			
 		}
 
 		#endregion

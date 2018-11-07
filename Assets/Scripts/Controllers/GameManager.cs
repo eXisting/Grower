@@ -1,11 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Jobs;
-using GameSystems;
-using Unity.Jobs;
-using DG.Tweening;
-using Unity.Entities;
-using Unity.Collections;
-using Spheres.Core;
 using System;
 
 namespace GameManagers

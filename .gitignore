@@ -4,3 +4,4 @@ obj/
 Assembly-CSharp.csproj
 .vs/Grower/v15/Server/sqlite3/storage.ide-wal
 .vs/Grower/v15/Server/sqlite3/storage.ide
+.vs/
