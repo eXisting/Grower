@@ -1,5 +1,8 @@
 ﻿using Base.AbstractClasses;
 using Components;
+using Enums;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,36 +26,26 @@ namespace GameManagers
 		private int maxHorizontalOffset;
 
 		[SerializeField]
+		private int maxVerticalOffset;
+
+		[SerializeField]
 		private float initialBallSize;
 
 		[SerializeField]
 		private float initialMoveSpeed;
-
-		[SerializeField]
-		private int maxVerticalOffset;
-
-		[Header("Main canvas")]
-		[SerializeField]
-		private GameObject mainCanvas;
-
-		[Header("Main sphere")]
-		[SerializeField]
-		private GameObject mainSphere;
-
+		
 		[Header("Bot prefab")]
 		[SerializeField]
 		private GameObject ball;
 		
 		#endregion
 
+		private int amount;
+
 		private ViewBounds viewBounds;
 		private Rect mainCanvasRect;
 
-		private System.Random rand;
-
-		private List<Ball> balls = new List<Ball>();
-
-		private int amount;
+		public event Action<int> OnBallsAddFinished;
 
 		#region Core functions
 
@@ -63,22 +56,34 @@ namespace GameManagers
 		
 		public void StartAddBalls()
 		{
-			AddBalls();
+			StartCoroutine(AddBalls());
 		}
-		
-		private void AddBalls()
+
+		IEnumerator AddBalls()
 		{
 			amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
-
-			for (int i = 0; i < amount; i++)
+			
+			for (int ID = 0; ID < amount; ID++)
 			{
 				Vector3 ballPosition = CalculateBallPosition();
 
-				GameObject obj = Instantiate(this.ball, mainCanvas.transform);
-				obj.transform.localPosition = ballPosition;
-			}
-		}
+				GameObject obj = Instantiate(this.ball, GameManager.Instance.MainCanvas.transform);
+				
+				RegularBall r_Ball = obj.AddComponent<RegularBall>();
 
+				r_Ball.InitBall();
+
+				obj.GetComponent<Renderer>().material.color = r_Ball.Color;
+				obj.transform.localPosition = ballPosition;
+				obj.transform.localScale = new Vector3(r_Ball.Radius, r_Ball.Radius, r_Ball.Radius);
+
+				GameManager.Instance.BallsObserver.Add(ID, r_Ball);
+
+				yield return new WaitForSeconds(GameManager.Instance.Level * 2);
+			}
+			
+			OnBallsAddFinished?.Invoke(amount);
+		}
 
 		private Vector3 CalculateBallPosition()
 		{
@@ -96,8 +101,8 @@ namespace GameManagers
 			float xMaxRange = viewBounds.xRightBound + maxHorizontalOffset;
 
 			Vector3 position = new Vector3(
-				rand.Next(0, 2) < 1 ? xMinRange : xMaxRange,
-				rand.Next(0, 2) < 1 ? yMinRange : yMaxRange
+				GameManager.Instance.Randomizer.Next(0, 2) < 1 ? xMinRange : xMaxRange,
+				GameManager.Instance.Randomizer.Next(0, 2) < 1 ? yMinRange : yMaxRange
 			);
 
 			return position;
@@ -114,11 +119,7 @@ namespace GameManagers
 
 		private void Initialize()
 		{
-			Screen.orientation = ScreenOrientation.Landscape;
-			
-			rand = new System.Random();
-			
-			mainCanvasRect = mainCanvas.GetComponent<RectTransform>().rect;
+			mainCanvasRect = GameManager.Instance.MainCanvas.GetComponent<RectTransform>().rect;
 
 			RememberViewBounds();
 

@@ -12,35 +12,34 @@ namespace GameManagers
 
 		private GameManager() { }
 
+		// TODO: Come up with pseudo-random
+		public System.Random Randomizer { get; private set; }
+
 		[SerializeField]
 		private SpawnManager spawnManager;
 
 		[SerializeField]
 		private DataDisplayManager dataDisplayManager;
 
-		public SpawnManager SpawnManager
-		{
-			get => spawnManager;
-			set
-			{
-				if (spawnManager == null)
-					spawnManager = value;
-			}
-		}
+		[SerializeField]
+		private BallsObserver ballsObserver;
+		
+		[Header("Main canvas")]
+		[SerializeField]
+		private GameObject mainCanvas;
 
-		public DataDisplayManager DataDisplayManager
-		{
-			get => dataDisplayManager;
-			set
-			{
-				if (spawnManager == null)
-					dataDisplayManager = value;
-			}
-		}
+		[Header("Main sphere")]
+		[SerializeField]
+		private GameObject mainSphere;
 
 		public int Multiplier { get; private set; }
-
 		public int Level { get; private set; }
+
+		public GameObject MainCanvas { get => mainCanvas; private set => mainCanvas = value; }
+		public GameObject MainSphere { get => mainSphere; private set => mainSphere = value; }
+		public BallsObserver BallsObserver { get => ballsObserver; private set => ballsObserver = value; }
+		public SpawnManager SpawnManager { get => spawnManager; private set => spawnManager = value; }
+		public DataDisplayManager DataDisplayManager { get => dataDisplayManager; private set => dataDisplayManager = value; }
 
 		#endregion
 
@@ -64,6 +63,7 @@ namespace GameManagers
 			Screen.orientation = ScreenOrientation.Landscape;
 			Level = 1;
 			Multiplier = 5;
+			Randomizer = new System.Random();
 
 			Instance = this;
 
@@ -72,9 +72,7 @@ namespace GameManagers
 
 		public void StartGame()
 		{
-			spawnManager.StartAddBalls();
-
-			// TODO: Make balls move
+			SpawnManager.StartAddBalls();
 		}
 	}
 

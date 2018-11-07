@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Base.Interfaces
 {
-	interface IMoveableBall
+	public interface IMoveableBall
 	{
-		void Move();
+		void Move(Vector3 _target);
 
 		event Action OnMoveBegan;
 		event Action OnMoveEnded;

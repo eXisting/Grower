@@ -11,6 +11,6 @@ namespace Base.AbstractClasses
 	{
 		public float Radius { get; set; }
 
-		protected Color32 Color { get; set; }
+		public Color32 Color { get; set; }
 	}
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Base.Interfaces
 {
-	interface IDestroyableBall
+	public interface IDestroyableBall
 	{
 		void Destroy();
 
