@@ -115,8 +115,8 @@ namespace GameManagers
 
 		private void RememberViewBounds()
 		{
-			viewBounds.xLeftBound = mainCanvasRect.xMin - initialBallSize;
-			viewBounds.xRightBound = mainCanvasRect.xMax + initialBallSize;
+			viewBounds.xLeftBound = -(Screen.width / 2) - initialBallSize;
+			viewBounds.xRightBound = Screen.width / 2 + initialBallSize;
 
 			viewBounds.yBotBound = mainCanvasRect.yMin - initialBallSize;
 			viewBounds.yTopBound = mainCanvasRect.yMax + initialBallSize;

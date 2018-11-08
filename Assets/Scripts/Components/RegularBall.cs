@@ -1,5 +1,6 @@
 ﻿using Base.AbstractClasses;
 using Base.Interfaces;
+using DG.Tweening;
 using Enums;
 using GameManagers;
 using System;
@@ -28,7 +29,7 @@ namespace Components
 
 			// TODO: Add in-game types
 			this.Radius = GameManager.Instance.Randomizer.Next(55, 100);
-			this.MoveSpeed = GameManager.Instance.Level * 100;
+			this.MoveSpeed = GameManager.Instance.Level * 500;
 			this.Points = GameManager.Instance.Level * (int)color;
 		}
 
@@ -61,6 +62,7 @@ namespace Components
 
 			while (transform.localPosition != _target)
 			{
+				//var move = transform.DOLocalMove(_target, 15f);
 				transform.localPosition = Vector3.MoveTowards(transform.localPosition, _target, MoveSpeed * Time.deltaTime);
 
 				yield return new WaitForFixedUpdate();

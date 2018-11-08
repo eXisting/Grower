@@ -1194,7 +1194,7 @@ MonoBehaviour:
   maxHorizontalOffset: 50
   maxVerticalOffset: 30
   initialBallSize: 50
-  initialMoveSpeed: 1
+  initialMoveSpeed: 10
   ball: {fileID: 1567738649479698, guid: 702162824994e3b489aeb775654a1ba6, type: 2}
 --- !u!1 &1925891906
 GameObject:
