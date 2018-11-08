@@ -53,12 +53,6 @@ namespace GameManagers
 			Initialize();
 		}
 
-		private void Update()
-		{
-			if (Input.GetKeyDown("space"))
-				StartGame();
-		}
-
 		private void Initialize()
 		{
 			Screen.orientation = ScreenOrientation.Landscape;
