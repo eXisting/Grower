@@ -62,8 +62,10 @@ namespace GameManagers
 
 		IEnumerator AddBalls()
 		{
-			amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
-			
+            GameManager.Instance.OnLevelChange(GameManager.Instance.Level);
+
+            amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
+
 			for (int ID = 0; ID < amount; ID++)
 			{
 				Vector3 ballPosition = CalculateBallPosition();
