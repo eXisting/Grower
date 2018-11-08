@@ -62,9 +62,10 @@ namespace GameManagers
 
 		IEnumerator AddBalls()
 		{
-            GameManager.Instance.OnLevelChange(GameManager.Instance.Level);
-
             amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
+
+            GameManager.Instance.OnLevelChange(GameManager.Instance.Level);
+			//TODO: Call 2 functions for clear balls and show remaining in progress view
 
 			for (int ID = 0; ID < amount; ID++)
 			{
