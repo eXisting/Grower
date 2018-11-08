@@ -74,6 +74,7 @@ namespace GameManagers
 
 		public void StartGame()
 		{
+            GameManager.Instance.OnLevelChange(Level);
 			SpawnManager.StartAddBalls();
 		}
 	}
