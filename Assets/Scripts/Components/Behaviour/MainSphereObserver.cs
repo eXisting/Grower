@@ -9,5 +9,7 @@ public class MainSphereObserver : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         GameManager.Instance.StartGame();
+
+        gameObject.GetComponent<MainSphereObserver>().enabled = false;
     }
 }
