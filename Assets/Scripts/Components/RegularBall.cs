@@ -35,14 +35,14 @@ namespace Components
 
 		public void Move(Vector3 _target)
 		{
-			Debug.Log("Item is about to move");
+			//Debug.Log("Item is about to move");
 
 			StartCoroutine(Movement(_target));
 		}
 
 		public void DestroyBall()
 		{
-			Debug.Log("Item is about to be destroyed");
+			//Debug.Log("Item is about to be destroyed");
 
 			OnBallDestroy?.Invoke();
 			StopCoroutine("Movement");
@@ -53,7 +53,7 @@ namespace Components
 		{
             GameManager.Instance.OnBallKill(Points);
             GameManager.Instance.OnBallsCountChange(-1);
-
+			
 			DestroyBall();
 		}
 

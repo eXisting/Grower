@@ -36,11 +36,11 @@ namespace GameManagers
 		public int Level { get; private set; }
 		public int InitialHitsCount { get; private set; }
 
-		public GameObject MainCanvas { get => mainCanvas; private set => mainCanvas = value; }
-		public GameObject MainSphere { get => mainSphere; private set => mainSphere = value; }
-		public BallsObserver BallsObserver { get => ballsObserver; private set => ballsObserver = value; }
-		public SpawnManager SpawnManager { get => spawnManager; private set => spawnManager = value; }
-		public DataDisplayManager DataDisplayManager { get => dataDisplayManager; private set => dataDisplayManager = value; }
+		public GameObject MainCanvas { get { return mainCanvas; } private set { mainCanvas = value; } }
+		public GameObject MainSphere { get { return mainSphere; } private set { mainSphere = value; } }
+		public BallsObserver BallsObserver { get { return ballsObserver; } private set { ballsObserver = value; } }
+		public SpawnManager SpawnManager { get { return spawnManager; } private set { spawnManager = value; } }
+		public DataDisplayManager DataDisplayManager { get { return dataDisplayManager; } private set { dataDisplayManager = value; } }
 
 		#endregion
 
