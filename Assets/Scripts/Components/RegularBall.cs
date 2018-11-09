@@ -1,14 +1,9 @@
 ﻿using Base.AbstractClasses;
 using Base.Interfaces;
-using DG.Tweening;
 using Enums;
 using GameManagers;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Components
