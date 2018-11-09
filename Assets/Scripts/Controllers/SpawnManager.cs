@@ -66,6 +66,8 @@ namespace GameManagers
 
             amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
 
+            GameManager.Instance.OnBallsCountChange(amount);
+
 			for (int ID = 0; ID < amount; ID++)
 			{
 				Vector3 ballPosition = CalculateBallPosition();
