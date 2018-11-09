@@ -65,7 +65,7 @@ namespace GameManagers
             amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
 
             GameManager.Instance.OnLevelChange(GameManager.Instance.Level);
-			//TODO: Call 2 functions for clear balls and show remaining in progress view
+            GameManager.Instance.OnBallsCountChange(amount);
 
 			for (int ID = 0; ID < amount; ID++)
 			{
