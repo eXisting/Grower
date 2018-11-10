@@ -50,16 +50,18 @@ namespace GameManagers
 			ballsPresentCount.text = ValueToDisplayText(ballsPresentCount, _value);
 		}
 
-		private void Subscribe()
-		{
-			GameManager.Instance.OnBallKill += UpdateScoreText;
+        private void Subscribe()
+        {
+            GameManager.Instance.OnBallDestroy += ClearTextFields;
+            GameManager.Instance.OnBallKill += UpdateScoreText;
 			GameManager.Instance.OnLevelChange += UpdateLevelText;
 			GameManager.Instance.OnBallsCountChange += UpdateBallsCountText;
 		}
 
 		private void Unsubscribe()
 		{
-			GameManager.Instance.OnBallKill -= UpdateScoreText;
+            GameManager.Instance.OnBallDestroy -= ClearTextFields;
+            GameManager.Instance.OnBallKill -= UpdateScoreText;
 			GameManager.Instance.OnLevelChange -= UpdateLevelText;
 			GameManager.Instance.OnBallsCountChange -= UpdateBallsCountText;
 		}

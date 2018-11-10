@@ -34,6 +34,11 @@ namespace GameManagers
 			balls.Remove(_id);
 		}
 
+        public void DestroyAllBalls()
+        {
+            balls.Clear();
+        }
+
 		private void StartMoveBalls(int _amount)
 		{
 			if (balls.Count == _amount)

@@ -35,6 +35,10 @@ namespace Components
 				ball.DestroyBall();
 			else
 				Destroy(collision.gameObject);
+                ball.DestroyBall();
+                GameManager.Instance.OnBallDestroy();
+                GameManager.Instance.BallsObserver.DestroyAllBalls();
+                gameObject.GetComponent<MainSphereObserver>().enabled = true;
 
 			--HitsToDeath;
 		}
