@@ -46,9 +46,9 @@ namespace GameManagers
 		{
 			for (int ID = 0; ID < _amount; ID++)
 			{
-				yield return new WaitForSeconds(GameManager.Instance.Level * 2);
 				RegularBall ball = (RegularBall)balls[ID];
 
+				yield return new WaitForSeconds(0.5f);
 				ball.Move(TargetPosition);
 			}
 		}		

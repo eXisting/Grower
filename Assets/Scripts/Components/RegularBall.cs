@@ -24,21 +24,17 @@ namespace Components
 
 			// TODO: Add in-game types
 			this.Radius = GameManager.Instance.Randomizer.Next(55, 100);
-			this.MoveSpeed = GameManager.Instance.Level * 500;
-			this.Points = GameManager.Instance.Level * (int)color;
+			this.MoveSpeed = GameManager.Instance.Level * 250;
+			this.Points = (GameManager.Instance.Level + 1) * (int)color;
 		}
 
 		public void Move(Vector3 _target)
 		{
-			//Debug.Log("Item is about to move");
-
 			StartCoroutine(Movement(_target));
 		}
 
 		public void DestroyBall()
 		{
-			//Debug.Log("Item is about to be destroyed");
-
 			GameManager.Instance.OnBallsCountChange(-1);
 			OnBallDestroy?.Invoke();
 			StopCoroutine("Movement");
@@ -58,7 +54,6 @@ namespace Components
 
 			while (transform.localPosition != _target)
 			{
-				//var move = transform.DOLocalMove(_target, 15f);
 				transform.localPosition = Vector3.MoveTowards(transform.localPosition, _target, MoveSpeed * Time.deltaTime);
 
 				yield return new WaitForFixedUpdate();
