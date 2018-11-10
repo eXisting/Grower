@@ -39,6 +39,7 @@ namespace Components
 		{
 			//Debug.Log("Item is about to be destroyed");
 
+			GameManager.Instance.OnBallsCountChange(-1);
 			OnBallDestroy?.Invoke();
 			StopCoroutine("Movement");
 			Destroy(this.gameObject);
@@ -47,7 +48,6 @@ namespace Components
 		private void OnMouseDown()
 		{
             GameManager.Instance.OnBallKill(Points);
-            GameManager.Instance.OnBallsCountChange(-1);
 			
 			DestroyBall();
 		}
