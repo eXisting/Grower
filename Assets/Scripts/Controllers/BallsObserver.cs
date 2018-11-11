@@ -21,15 +21,21 @@ namespace GameManagers
 		private void Start()
 		{
 			GameManager.Instance.SpawnManager.OnBallsAddFinished += StartMoveBalls;
-			GameManager.Instance.MainSphere.OnMainSphereDeath += ClearBalls;
+			//GameManager.Instance.SphereObserver.AddListinerToBall(ClearBalls);
 
-			TargetPosition = GameManager.Instance.MainSphere.transform.localPosition;
+			TargetPosition = GameManager.Instance.SphereObserver.BallLocalPosition();
 		}
 		
 		private void Remove(IDestroyableBall _ball)
 		{
 			RegularBall ball = (RegularBall)_ball;
 			balls.Remove(ball.ID);
+
+			if (balls.Count == 0)
+			{
+				// TODO: Come up with several game modes
+				GameManager.Instance.SphereObserver.ToogleObserver();
+			}
 		}
 
 		private void ClearBalls()
@@ -66,7 +72,7 @@ namespace GameManagers
 				yield return new WaitForSeconds(0.5f);
 				ball.Move(TargetPosition);
 			}
-		}		
+		}
 	}
 
 }

@@ -24,8 +24,6 @@ namespace Components
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			Debug.Log("Collision: " + collision.collider.name);
-
 			if (HitsToDeath == 1)
 			{
 				OnBallDestroy?.Invoke(this);

@@ -24,8 +24,8 @@ namespace Components
 			this.Color = ColorGenerator.Get(color);
 
 			// TODO: Add in-game types
-			this.Radius = GameManager.Instance.Randomizer.Next(55, 100);
-			this.MoveSpeed = GameManager.Instance.Level * 250;
+			this.Radius = GameManager.Instance.Randomizer.Next(80, 140);
+			this.MoveSpeed = GameManager.Instance.Level * 100;
 			this.Points = (GameManager.Instance.Level + 1) * (int)color;
 		}
 

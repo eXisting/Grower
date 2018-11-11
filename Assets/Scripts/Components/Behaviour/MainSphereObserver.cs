@@ -1,5 +1,6 @@
 ﻿using Components;
 using GameManagers;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,11 +9,26 @@ public class MainSphereObserver : MonoBehaviour, IPointerClickHandler
 	[SerializeField]
 	private MainBall main;
 
+	public void AddListinerToBall(Action _callBack)
+	{
+		main.OnMainSphereDeath += _callBack;
+	}
+
+	public Vector3 BallLocalPosition()
+	{
+		return main.transform.localPosition;
+	}
+
+	public void ToogleObserver()
+	{
+		this.enabled = !this.enabled;
+	}
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.Instance.StartGame();
 		main.CalculateHitsToDeath();
+		ToogleObserver();
 
-        gameObject.GetComponent<MainSphereObserver>().enabled = false;
-    }
+        GameManager.Instance.StartGame();
+	}
 }
