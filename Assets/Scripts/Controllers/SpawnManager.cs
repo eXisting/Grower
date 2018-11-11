@@ -75,6 +75,7 @@ namespace GameManagers
 				
 				RegularBall r_Ball = obj.AddComponent<RegularBall>();
 				r_Ball.InitBall();
+				r_Ball.ID = ID;
 
 				obj.AddComponent<EventTrigger>();
 				

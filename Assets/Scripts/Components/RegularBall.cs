@@ -11,8 +11,9 @@ namespace Components
 	public class RegularBall : Ball, IMoveableBall, IDestroyableBall
 	{
 		public event Action OnMovementStart;
-		public event Action OnBallDestroy;
+		public event Action<IDestroyableBall> OnBallDestroy;
 
+		public int ID;
 		public int Points;
 		public float MoveSpeed;
 
@@ -36,7 +37,8 @@ namespace Components
 		public void DestroyBall()
 		{
 			GameManager.Instance.OnBallsCountChange(-1);
-			OnBallDestroy?.Invoke();
+			OnBallDestroy?.Invoke(this);
+
 			StopCoroutine("Movement");
 			Destroy(this.gameObject);
 		}

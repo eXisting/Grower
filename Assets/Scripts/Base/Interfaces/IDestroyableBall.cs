@@ -10,6 +10,6 @@ namespace Base.Interfaces
 	{
 		void DestroyBall();
 
-		event Action OnBallDestroy;
+		event Action<IDestroyableBall> OnBallDestroy;
 	}
 }

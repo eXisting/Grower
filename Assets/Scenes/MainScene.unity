@@ -315,7 +315,7 @@ MonoBehaviour:
   dataDisplayManager: {fileID: 1044891155}
   ballsObserver: {fileID: 839144874}
   mainCanvas: {fileID: 46244761}
-  mainSphere: {fileID: 1995268547}
+  mainSphere: {fileID: 1342001450}
 --- !u!4 &116745790
 Transform:
   m_ObjectHideFlags: 0
@@ -1005,6 +1005,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4490707dc0961e4094792e1dc8db153, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1342001450 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114189341888527290, guid: e4490707dc0961e4094792e1dc8db153,
+    type: 2}
+  m_PrefabInternal: {fileID: 1342001449}
+  m_Script: {fileID: 11500000, guid: d48f4038c012ec544a9ef026b4bde7cd, type: 3}
 --- !u!1 &1416989303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,11 +1421,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1948067842}
   m_CullTransparentMesh: 0
---- !u!1 &1995268547 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1579680527600702, guid: e4490707dc0961e4094792e1dc8db153,
-    type: 2}
-  m_PrefabInternal: {fileID: 1342001449}
 --- !u!224 &1995268548 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224567147673243176, guid: e4490707dc0961e4094792e1dc8db153,

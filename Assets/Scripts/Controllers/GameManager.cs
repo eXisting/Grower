@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using Components;
 
 namespace GameManagers
 {
@@ -30,14 +31,14 @@ namespace GameManagers
 
 		[Header("Main sphere")]
 		[SerializeField]
-		private GameObject mainSphere;
+		private MainBall mainSphere;
 
 		public int Multiplier { get; private set; }
 		public int Level { get; private set; }
 		public int InitialHitsCount { get; private set; }
 
 		public GameObject MainCanvas { get { return mainCanvas; } private set { mainCanvas = value; } }
-		public GameObject MainSphere { get { return mainSphere; } private set { mainSphere = value; } }
+		public MainBall MainSphere { get { return mainSphere; } private set { mainSphere = value; } }
 		public BallsObserver BallsObserver { get { return ballsObserver; } private set { ballsObserver = value; } }
 		public SpawnManager SpawnManager { get { return spawnManager; } private set { spawnManager = value; } }
 		public DataDisplayManager DataDisplayManager { get { return dataDisplayManager; } private set { dataDisplayManager = value; } }
@@ -58,7 +59,7 @@ namespace GameManagers
 			Screen.orientation = ScreenOrientation.Landscape;
 			Level = 1;
 			Multiplier = 100;
-			InitialHitsCount = 2;
+			InitialHitsCount = 5;
 			Randomizer = new System.Random();
 
 			Instance = this;

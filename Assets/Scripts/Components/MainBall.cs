@@ -12,11 +12,12 @@ namespace Components
 {
 	public class MainBall : Ball, IDestroyableBall
 	{
-		public event Action OnBallDestroy;
+		public event Action<IDestroyableBall> OnBallDestroy;
+		public event Action OnMainSphereDeath;
 
 		private int HitsToDeath;
 		
-		private void Start()
+		public void CalculateHitsToDeath()
 		{
 			HitsToDeath = GameManager.Instance.Level * GameManager.Instance.InitialHitsCount;
 		}
@@ -27,7 +28,8 @@ namespace Components
 
 			if (HitsToDeath == 1)
 			{
-				OnBallDestroy?.Invoke();
+				OnBallDestroy?.Invoke(this);
+				OnMainSphereDeath?.Invoke();
 			}
 
 			RegularBall ball = collision.gameObject.GetComponent<RegularBall>();
