@@ -11,8 +11,9 @@ namespace Components
 	public class RegularBall : Ball, IMoveableBall, IDestroyableBall
 	{
 		public event Action OnMovementStart;
-		public event Action OnBallDestroy;
+		public event Action<IDestroyableBall> OnBallDestroy;
 
+		public int ID;
 		public int Points;
 		public float MoveSpeed;
 
@@ -23,8 +24,8 @@ namespace Components
 			this.Color = ColorGenerator.Get(color);
 
 			// TODO: Add in-game types
-			this.Radius = GameManager.Instance.Randomizer.Next(55, 100);
-			this.MoveSpeed = GameManager.Instance.Level * 250;
+			this.Radius = GameManager.Instance.Randomizer.Next(80, 140);
+			this.MoveSpeed = GameManager.Instance.Level * 100;
 			this.Points = (GameManager.Instance.Level + 1) * (int)color;
 		}
 
@@ -36,7 +37,8 @@ namespace Components
 		public void DestroyBall()
 		{
 			GameManager.Instance.OnBallsCountChange(-1);
-			OnBallDestroy?.Invoke();
+			OnBallDestroy?.Invoke(this);
+
 			StopCoroutine("Movement");
 			Destroy(this.gameObject);
 		}

@@ -62,9 +62,10 @@ namespace GameManagers
 
 		IEnumerator AddBalls()
 		{
+            GameManager.Instance.OnLevelChange(1);
+
             amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
 
-            GameManager.Instance.OnLevelChange(GameManager.Instance.Level);
             GameManager.Instance.OnBallsCountChange(amount);
 
 			for (int ID = 0; ID < amount; ID++)
@@ -75,6 +76,7 @@ namespace GameManagers
 				
 				RegularBall r_Ball = obj.AddComponent<RegularBall>();
 				r_Ball.InitBall();
+				r_Ball.ID = ID;
 
 				obj.AddComponent<EventTrigger>();
 				

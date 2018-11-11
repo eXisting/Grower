@@ -12,22 +12,22 @@ namespace Components
 {
 	public class MainBall : Ball, IDestroyableBall
 	{
-		public event Action OnBallDestroy;
+		public event Action<IDestroyableBall> OnBallDestroy;
+		public event Action OnMainSphereDeath;
 
 		private int HitsToDeath;
 		
-		private void Start()
+		public void CalculateHitsToDeath()
 		{
 			HitsToDeath = GameManager.Instance.Level * GameManager.Instance.InitialHitsCount;
 		}
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			Debug.Log("Collision: " + collision.collider.name);
-
 			if (HitsToDeath == 1)
 			{
-				OnBallDestroy?.Invoke();
+				OnBallDestroy?.Invoke(this);
+				OnMainSphereDeath?.Invoke();
 			}
 
 			RegularBall ball = collision.gameObject.GetComponent<RegularBall>();
