@@ -21,7 +21,7 @@ namespace GameManagers
 		private void Start()
 		{
 			GameManager.Instance.SpawnManager.OnBallsAddFinished += StartMoveBalls;
-			//GameManager.Instance.SphereObserver.AddListinerToBall(ClearBalls);
+			GameManager.Instance.SphereObserver.AddListinerToBall(ClearBalls);
 
 			TargetPosition = GameManager.Instance.SphereObserver.BallLocalPosition();
 		}
