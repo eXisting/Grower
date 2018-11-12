@@ -48,6 +48,7 @@ namespace GameManagers
 		public Action<int> OnBallKill;
 		public Action<int> OnLevelChange;
 		public Action<int> OnBallsCountChange;
+        public Action TransitionOnNextLevel;
 
 		private void Awake()
 		{

@@ -46,6 +46,8 @@ namespace Components
 		private void OnMouseDown()
 		{
             GameManager.Instance.OnBallKill(Points);
+
+            GameManager.Instance.TransitionOnNextLevel();
 			
 			DestroyBall();
 		}

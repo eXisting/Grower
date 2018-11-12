@@ -22,6 +22,7 @@ namespace GameManagers
 		{
 			GameManager.Instance.SpawnManager.OnBallsAddFinished += StartMoveBalls;
 			GameManager.Instance.SphereObserver.AddListinerToBall(ClearBalls);
+            GameManager.Instance.TransitionOnNextLevel += PassThisLevel;
 
 			TargetPosition = GameManager.Instance.SphereObserver.BallLocalPosition();
 		}
@@ -37,6 +38,14 @@ namespace GameManagers
 				GameManager.Instance.SphereObserver.ToogleObserver();
 			}
 		}
+
+        private void PassThisLevel()
+        {
+            if (balls.Count == 1)
+            {
+                GameManager.Instance.SpawnManager.StartAddBalls();
+            }
+        }
 
 		private void ClearBalls()
 		{
