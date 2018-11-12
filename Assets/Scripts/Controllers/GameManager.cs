@@ -57,7 +57,7 @@ namespace GameManagers
 		private void Initialize()
 		{
 			Screen.orientation = ScreenOrientation.Landscape;
-			Level = 0;
+			Level = 1;
 			Multiplier = 20;
 			InitialHitsCount = 5;
 			Randomizer = new System.Random();

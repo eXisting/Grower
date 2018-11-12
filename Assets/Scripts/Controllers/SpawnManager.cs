@@ -62,9 +62,9 @@ namespace GameManagers
 
 		IEnumerator AddBalls()
 		{
-            GameManager.Instance.OnLevelChange(1);
-
             amount = GameManager.Instance.Level * GameManager.Instance.Multiplier;
+
+            GameManager.Instance.OnLevelChange(1);
 
             GameManager.Instance.OnBallsCountChange(amount);
 
