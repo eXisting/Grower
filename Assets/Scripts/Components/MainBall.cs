@@ -29,12 +29,14 @@ namespace Components
 				OnBallDestroy?.Invoke(this);
 				OnMainSphereDeath?.Invoke();
 			}
-
-			RegularBall ball = collision.gameObject.GetComponent<RegularBall>();
-			if (ball != null)
-				ball.DestroyBall();
-			else
-				Destroy(collision.gameObject);
+            else
+            {
+			    RegularBall ball = collision.gameObject.GetComponent<RegularBall>();
+			    if (ball != null)
+				    ball.DestroyBall();
+			    else
+				    Destroy(collision.gameObject);
+            }
 
 			--HitsToDeath;
 		}

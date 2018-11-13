@@ -37,7 +37,8 @@ namespace Components
 		public void DestroyBall()
 		{
 			GameManager.Instance.OnBallsCountChange(-1);
-			OnBallDestroy?.Invoke(this);
+            GameManager.Instance.TransitionOnNextLevel();
+            OnBallDestroy?.Invoke(this);
 
 			StopCoroutine("Movement");
 			Destroy(this.gameObject);
@@ -46,9 +47,6 @@ namespace Components
 		private void OnMouseDown()
 		{
             GameManager.Instance.OnBallKill(Points);
-
-            GameManager.Instance.TransitionOnNextLevel();
-			
 			DestroyBall();
 		}
 
