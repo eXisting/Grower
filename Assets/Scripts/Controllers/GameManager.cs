@@ -33,7 +33,8 @@ namespace GameManagers
 		[SerializeField]
 		private MainSphereObserver mainSphereObserver;
 
-		public int Multiplier { get; private set; }
+        public bool GameOver { get; set; }
+        public int Multiplier { get; private set; }
 		public int Level { get; private set; }
 		public int InitialHitsCount { get; private set; }
 
@@ -58,9 +59,7 @@ namespace GameManagers
 		private void Initialize()
 		{
 			Screen.orientation = ScreenOrientation.Landscape;
-			Level = 1;
-			Multiplier = 20;
-			InitialHitsCount = 5;
+            RestartGame();
 			Randomizer = new System.Random();
 
 			Instance = this;
@@ -72,10 +71,18 @@ namespace GameManagers
 
 		public void StartGame()
 		{
-			SpawnManager.StartAddBalls();
+            SpawnManager.StartAddBalls();
 		}
 
-		private void IncreaseLevel(int _additional)
+        public void RestartGame()
+        {
+            GameOver = false;
+            Level = 1;
+            Multiplier = 20;
+            InitialHitsCount = 5;
+        }
+
+        private void IncreaseLevel(int _additional)
 		{
 			Level += _additional;
 		}

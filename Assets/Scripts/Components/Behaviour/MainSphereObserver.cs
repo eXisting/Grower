@@ -9,12 +9,22 @@ public class MainSphereObserver : MonoBehaviour, IPointerClickHandler
 	[SerializeField]
 	private MainBall main;
 
-	public void AddListinerToBall(Action _callBack)
+    private void Start()
+    {
+        AddListinerToBall(ToogleObserver);
+    }
+
+    public void AddListinerToBall(Action _callBack)
 	{
 		main.OnMainSphereDeath += _callBack;
 	}
 
-	public Vector3 BallLocalPosition()
+    public void RemoveListinerToBall(Action _callBack)
+    {
+        main.OnMainSphereDeath -= _callBack;
+    }
+
+    public Vector3 BallLocalPosition()
 	{
 		return main.transform.localPosition;
 	}
@@ -26,8 +36,13 @@ public class MainSphereObserver : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-		main.CalculateHitsToDeath();
-		ToogleObserver();
+        if (GameManager.Instance.GameOver)
+        {
+            GameManager.Instance.RestartGame();
+        }
+
+        main.CalculateHitsToDeath();
+        ToogleObserver();
 
         GameManager.Instance.StartGame();
 	}

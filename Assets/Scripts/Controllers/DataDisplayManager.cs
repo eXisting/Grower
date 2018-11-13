@@ -55,14 +55,17 @@ namespace GameManagers
 			GameManager.Instance.OnBallKill += UpdateScoreText;
 			GameManager.Instance.OnLevelChange += UpdateLevelText;
 			GameManager.Instance.OnBallsCountChange += UpdateBallsCountText;
-		}
+            GameManager.Instance.SphereObserver.AddListinerToBall(ClearTextFields);
+        }
 
-		private void Unsubscribe()
+        private void Unsubscribe()
 		{
 			GameManager.Instance.OnBallKill -= UpdateScoreText;
 			GameManager.Instance.OnLevelChange -= UpdateLevelText;
 			GameManager.Instance.OnBallsCountChange -= UpdateBallsCountText;
-		}
+            GameManager.Instance.SphereObserver.RemoveListinerToBall(ClearTextFields);
+
+        }
 
 		private string ValueToDisplayText(Text _text, int _value)
 		{

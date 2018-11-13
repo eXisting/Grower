@@ -28,6 +28,7 @@ namespace Components
 			{
 				OnBallDestroy?.Invoke(this);
 				OnMainSphereDeath?.Invoke();
+                GameManager.Instance.GameOver = true;
 			}
             else
             {
